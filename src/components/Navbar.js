@@ -22,8 +22,8 @@ export default function Navbar() {
                         </ul>
                         
                         <form className="d-flex" role="search">
-                            <input className="form-control bg-dark me-2" type="search" placeholder="Search..." aria-label="Search" />
-                            <button className="btn btn-success" type="submit">Search</button>
+                            <Link to="/login" className="btn btn-success mx-1" role="button">Login</Link>
+                            <Link to="/signup" className="btn btn-success mx-1" role="button">Signup</Link>
                         </form>
                     </div>
                 </div>
