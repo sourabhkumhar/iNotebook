@@ -4,7 +4,7 @@ import noteContext from '../context/notes/noteContext';
 import AddNote from './AddNote';
 import NoteItem from './NoteItem';
 
-export default function FetchNotes() {
+export default function FetchNotes(props) {
     const context = useContext(noteContext);
     const { notes, getNotes, editNote } = context;
     useEffect(() => {
@@ -22,9 +22,7 @@ export default function FetchNotes() {
         if (!(note.etitle.length < 3 || note.edescription.length < 5)) {
             editNote(note.id, note.etitle, note.edescription, note.etag)
             refClose.current.click();
-        }
-        else {
-            console.log("Error in text input")
+            props.showAlert('Your not has been updated', 'success', 'Success');
         }
     }
 
@@ -39,7 +37,7 @@ export default function FetchNotes() {
 
     return (
         <>
-            <AddNote />
+            <AddNote showAlert={props.showAlert} />
 
             <button type="button" className="btn btn-primary d-none" ref={ref} data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Launch demo modal
@@ -84,7 +82,7 @@ export default function FetchNotes() {
 
             <div className="row" align="center">
                 {notes.map((notes) => {
-                    return <NoteItem key={notes._id} note={notes} updateNote={updateNote} />
+                    return <NoteItem key={notes._id} note={notes} showAlert={props.showAlert} updateNote={updateNote} />
                 })}
             </div>
         </>

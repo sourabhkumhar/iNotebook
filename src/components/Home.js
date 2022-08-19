@@ -1,11 +1,11 @@
 import FetchNotes from './FetchNotes';
 
-export default function Home() {
+export default function Home(props) {
   return (
     <div>
       
       <div className="my-4">
-        <FetchNotes />
+        <FetchNotes showAlert={props.showAlert} />
       </div>
     </div>
   )

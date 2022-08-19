@@ -1,31 +1,38 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 
-export default function Signup() {
+export default function Signup(props) {
   const [cred, setCred] = useState({ name: "", email: "", password: "", cpassword: "" })
   let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { name, email, password } = cred;
-    const response = await fetch('http://localhost:5000/api/auth/createuser', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ name, email, password })
-    })
-    const json = await response.json()
-    console.log(json);
+    const { name, email, password, cpassword } = cred;
+    if (password === cpassword) {
+      const response = await fetch('http://localhost:5000/api/auth/createuser', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name, email, password })
+      })
+      const json = await response.json()
+      console.log(json);
 
-    if (json.success) {
-      // save the auth token and redirect
-      localStorage.setItem('token', json.authToken)
-      navigate("/login");
+      if (json.success) {
+        // save the auth token and redirect
+        localStorage.setItem('token', json.authToken)
+        navigate("/");
+        props.showAlert('Account is created successfully', 'success', 'Success');
+      }
+      else {
+        props.showAlert(`${json.error || json.errors[0].msg}`, 'danger', 'Error');
+      }
+
     }
     else {
-      alert(json.error || json.errors[0].msg)
+      props.showAlert('Password and Confirm Password are not same', 'warning', 'Alert');
     }
   }
 

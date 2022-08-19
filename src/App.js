@@ -1,4 +1,5 @@
 import './App.css';
+import { useState } from 'react'
 import {
   BrowserRouter as Router,
   Routes,
@@ -13,6 +14,17 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 
 function App() {
+  const [alert, setAlert] = useState(null);
+  const showAlert = (msg, type, prefix) => {
+    setAlert({
+      msg: msg,
+      type: type,
+      prefix: prefix
+    })
+    setTimeout(() => {
+      setAlert(null);
+    }, 1500)
+  }
 
   return (
     <>
@@ -22,14 +34,14 @@ function App() {
         <Router>
           <Navbar />
 
-          <Alert msg="Congrats!" type="Success" />
+          <Alert alert={alert} />
 
           <div className="container">
             <Routes>
-              <Route path="/home" element={<Home />}></Route>
+              <Route path="/" element={<Home showAlert={showAlert} />}></Route>
               <Route path="/about" element={<About />}></Route>
-              <Route path="/login" element={<Login />}></Route>
-              <Route path="/signup" element={<Signup />}></Route>
+              <Route path="/login" element={<Login showAlert={showAlert} />}></Route>
+              <Route path="/signup" element={<Signup showAlert={showAlert} />}></Route>
             </Routes>
           </div>
 

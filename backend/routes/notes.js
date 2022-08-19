@@ -16,7 +16,7 @@ router.get('/fetchallnotes', fetchuser, async (req, res) => {
     }
 })
 
-// Route 2: add a new note using POST "api/notes/fetchallnotes" - Login Required
+// Route 2: add a new note using POST "api/notes/addnote" - Login Required
 router.post('/addnote', fetchuser, [
     body('title', 'Enter a valid title').isLength({ min: 3 }),
     body('description', 'Description must be atleast 5 characters').isLength({ min: 5 }),
@@ -28,7 +28,7 @@ router.post('/addnote', fetchuser, [
         // If there are errors, return Bad request and the errors
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
+            return res.status(400).json({ success: false, errors: errors.array() });
         }
 
         const note = new Note({

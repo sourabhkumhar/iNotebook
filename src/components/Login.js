@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 
-export default function Login() {
+export default function Login(props) {
   const [cred, setCred] = useState({ email: "", password: "" })
   let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-
+    
     const response = await fetch('http://localhost:5000/api/auth/login', {
       method: 'POST',
       headers: {
@@ -22,10 +21,11 @@ export default function Login() {
     if (json.success) {
       // save the auth token and redirect
       localStorage.setItem('token', json.authToken)
-      navigate("/home");
+      navigate("/");
+      props.showAlert('Logged in Successfully', 'success', 'Success');
     }
     else {
-      alert(json.error || json.errors[0].msg)
+      props.showAlert(`${json.error || json.errors[0].msg}`, 'danger', 'Error');
     }
   }
 
