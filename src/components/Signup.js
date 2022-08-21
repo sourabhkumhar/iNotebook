@@ -42,6 +42,7 @@ export default function Signup(props) {
 
   return (
     <form method='post' onSubmit={handleSubmit}>
+      <h1>Create an Account for free</h1>
       <div className="mb-3">
         <label htmlFor="name" className="form-label">Name</label>
         <input type="text" className="form-control" id="name" name="name" onChange={onChange} required />

@@ -35,7 +35,7 @@ export default function Login(props) {
 
   return (
     <form method='post' onSubmit={handleSubmit}>
-      
+      <h1>Login to your Cloud Notes</h1>
       <div className="mb-3">
         <label htmlFor="email" className="form-label">Email address</label>
         <input type="email" className="form-control" id="email" name='email' aria-describedby="emailHelp" value={cred.email} onChange={onChange} required />

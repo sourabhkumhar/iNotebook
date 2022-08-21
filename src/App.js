@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import Navbar from './components/Navbar';
 import Home from './components/Home';
-import About from './components/About';
+import Profile from './components/Profile';
 import NoteState from './context/notes/NoteState';
 import Alert from './components/Alert';
 import Login from './components/Login';
@@ -39,7 +39,7 @@ function App() {
           <div className="container">
             <Routes>
               <Route path="/" element={<Home showAlert={showAlert} />}></Route>
-              <Route path="/about" element={<About />}></Route>
+              <Route path="/profile" element={<Profile />}></Route>
               <Route path="/login" element={<Login showAlert={showAlert} />}></Route>
               <Route path="/signup" element={<Signup showAlert={showAlert} />}></Route>
             </Routes>
