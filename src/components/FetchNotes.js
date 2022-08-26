@@ -11,7 +11,7 @@ export default function FetchNotes(props) {
     const context = useContext(noteContext);
     const { notes, getNotes, editNote } = context;
     useEffect(() => {
-        if(localStorage.getItem('token')) {
+        if (localStorage.getItem('token')) {
             getNotes();
         }
         else {
@@ -43,6 +43,13 @@ export default function FetchNotes(props) {
         setNote({ id: currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag, })
     }
 
+    const myStyle = {
+        outline: 'none',
+        border: 'none',
+        width: '100%',
+        fontSize: '17px'
+    }
+
     return (
         <>
             <AddNote showAlert={props.showAlert} />
@@ -60,14 +67,16 @@ export default function FetchNotes(props) {
                         </div>
                         <div className="modal-body">
                             <form>
-                                <div className="mb-3">
-                                    <input type="text" className="form-control" id="etitle" name='etitle' aria-describedby="" placeholder='Enter Title' value={note.etitle} onChange={onChange} minLength={3} required />
-                                </div>
-                                <div className="mb-3">
-                                    <textarea className="form-control" id="edescription" name='edescription' rows="5" placeholder='Enter Description' value={note.edescription} onChange={onChange} minLength={5} required />
-                                </div>
-                                <div className="mb-3">
-                                    <input type="text" className='form-control' name="etag" id="etag" placeholder='Enter tag - Separate by Comma (,)' value={note.etag} onChange={onChange} minLength={3} required />
+                                <div className="border-0 ">
+                                    <input type="text" style={myStyle} className="border-0" id="etitle" name='etitle' aria-describedby="" placeholder='Enter Title' value={note.etitle} onChange={onChange} minLength={3} required />
+
+                                    <hr />
+                                    
+                                    <textarea style={myStyle} className="border-0" id="edescription" name='edescription' rows="5" placeholder='Enter Description' value={note.edescription} onChange={onChange} minLength={5} required />
+                                    
+                                    <hr />
+                                    
+                                    <input type="text" style={myStyle} className='border-0' name="etag" id="etag" placeholder='Enter tag - Separate by Comma (,)' value={note.etag} onChange={onChange} minLength={3} required />
                                 </div>
                             </form>
                         </div>
@@ -82,7 +91,7 @@ export default function FetchNotes(props) {
                 </div>
             </div>
 
-            <h1>Your Notes:</h1>
+            <h1 className='mt-4'>Your Notes:</h1>
 
             <div className="container">
                 {notes.length === 0 && 'No Notes to Display'}

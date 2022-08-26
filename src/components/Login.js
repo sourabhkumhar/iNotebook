@@ -47,7 +47,7 @@ export default function Login(props) {
         <input type="password" className="form-control" id="password" name="password" value={cred.password} onChange={onChange} required />
       </div>
 
-      <button type="submit" className="btn btn-primary">Login</button>
+      <button type="submit" className="btn btn-success px-5">Login</button>
     </form>
   )
 }

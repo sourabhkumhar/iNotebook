@@ -64,7 +64,7 @@ export default function Signup(props) {
         <input type="password" className="form-control" id="cpassword" name="cpassword" onChange={onChange} minLength={5} required />
       </div>
 
-      <button type="submit" className="btn btn-success">Create an Account</button>
+      <button type="submit" className="btn btn-success px-5">Create an Account</button>
     </form>
   )
 }
