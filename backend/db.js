@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const mongoURI = "mongodb+srv://vercel-admin-user:sourabh123@cluster0.ma1ciqx.mongodb.net/?retryWrites=true&w=majority";
+const mongoURI = "mongodb+srv://vercel-admin-user:sourabh123@cluster0.ma1ciqx.mongodb.net/iNotebook?retryWrites=true&w=majority";
 
 const connectToMongo = async() => {
     mongoose.connect(mongoURI, () => {
