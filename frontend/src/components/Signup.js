@@ -10,7 +10,7 @@ export default function Signup(props) {
 
     const { name, email, password, cpassword } = cred;
     if (password === cpassword) {
-      const response = await fetch('http://localhost:5000/api/auth/createuser', {
+      const response = await fetch('https://i-notebook-flame.vercel.app/api/auth/createuser', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
